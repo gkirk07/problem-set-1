@@ -29,21 +29,21 @@ echo "answer-3: $answer_3"
 #Question 4: How many sequence records are in the SP1.fq file?
 
 answer_4=$(cat $datasets/SP1.fq | grep -e "^G" -e "^C" -e "^A" -e "^T" |
-wc -l)
+grep -v -e "<" -v -e ">" -v -e "@" -v -e "+" -v -e "="| wc -l)
 
 echo "answer-4: $answer_4"
 
 #Question 5: How many words are on lines containing the word 'bloody' in
 #hamlet.txt?
 
-answer_5=$(cat $datasets/hamlet.txt | grep "bloody" | wc -w)
+answer_5=$(cat $datasets/hamlet.txt | grep -i "bloody" | wc -w)
 
 echo "answer-5: $answer_5"
 
 #Question 6: What is the length of the sequence in the first record of
 #sample.fa
 
-answer_6=$(cat $datasets/sample.fa | grep -v "^>" | head -n1 | wc -c)
+answer_6=$(cat $datasets/sample.fa | grep -v "^>" | head -n1 | tr -d '\n\r' | wc -c )
 
 echo "answer-6: $answer_6"
 
